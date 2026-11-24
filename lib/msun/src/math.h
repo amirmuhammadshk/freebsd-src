@@ -97,6 +97,10 @@ extern const union __nan_un {
 	__fp_type_select(x, __inline_isnanf, __inline_isnan, __inline_isnanl)
 #define	isnormal(x) __fp_type_select(x, __isnormalf, __isnormal, __isnormall)
 
+#if __ISO_C_VISIBLE >= 2023
+#define iszero(x) (fpclassify(x) == FP_ZERO)
+#endif
+
 #ifdef __MATH_BUILTIN_RELOPS
 #define	isgreater(x, y)		__builtin_isgreater((x), (y))
 #define	isgreaterequal(x, y)	__builtin_isgreaterequal((x), (y))
